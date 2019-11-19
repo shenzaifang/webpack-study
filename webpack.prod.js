@@ -17,13 +17,12 @@ const setMPA = ()=>{
     entryFiles.forEach(entryFilePath=>{
         const match = entryFilePath.match(/src\/(.*)\/index.js/);
         const pageName = match && match[1];
-        console.log('pageName = ',pageName);
         entry[pageName] = entryFilePath;
         htmlWebpackPlugins.push(
             new HtmlWebpackPlugin({
                 template: path.join(__dirname, `src/${pageName}/index.html`),
                 filename: `${pageName}.html`,
-                chunks: [pageName],
+                chunks: ['vendors',pageName],
                 inject: true,
                 minify: {
                     html5: true,
@@ -119,20 +118,18 @@ module.exports = {
             assetNameRegExp:/\.css$/g,
             cssProcessor: require('cssnano')
         }),
-        new CleanWebpackPlugin(),
-        new HtmlWebpackExternalsPlugin({
-            externals: [
-                {
-                    module: 'react',
-                    entry: 'https://11.url.cn/now/lib/16.2.0/react.min.js',
-                    global: 'React',
-                },
-                {
-                    module: 'react-dom',
-                    entry: 'https://11.url.cn/now/lib/16.2.0/react-dom.min.js',
-                    global: 'ReactDOM',
+        new CleanWebpackPlugin()
+    ].concat(htmlWebpackPlugins),
+    optimization: {
+        splitChunks: {
+            minSize: 0,//设置最小 分离包体积的大小为0
+            cacheGroups: {
+                commons:{
+                    name:"common",
+                    chunks: 'all',
+                    minChunks: 2//设置最小引用次数为2次
                 }
-            ]
-        })
-    ].concat(htmlWebpackPlugins)
+            }
+        }
+    }
 }

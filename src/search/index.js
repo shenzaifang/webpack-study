@@ -6,6 +6,7 @@ import React from "react";
 import ReactDom from 'react-dom';
 import "./search.less";
 import flower from '../images/66.png';
+import '../../common';
 
 class Index extends React.Component{
     render() {
