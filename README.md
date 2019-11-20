@@ -1,15 +1,21 @@
-### Tree Shaking  基础设置
-- 条件：必须为es6语法，CJS不支持
-- 当项目打包时标记出 未使用的不到达代码 将其删除 当mode为"production"时 自动启用
+### 利用npm 发布包
+- 发布包之前你首先要有一个npm的账号
+- 第一次发布包
 
-### Scope Hoisting
-- 现象： 打包后存在大量闭包
-- 危害：1、大量函数闭包包裹代码，导致体积增大；2、运行代码时，创建的函数作用域变多，内存开销变大。
-- 条件：必须为es6语法，CJS不支持
-- 原理：将所有引用的模块代码按照引用顺序放在一个函数作用域里，然后适当的重命名一些变量以防止变量名冲突
-- 作用： 通过 scope hoisting 可以减少函数声明代码和内存开销 
-- 使用：当mode为"production"时 自动启用
+在终端输入npm adduser，提示输入账号，密码和邮箱，然后将提示创建成功
 
-### 动态加载模版
-- 插件：@babel/plugin-syntax-dynamic-import
-— 用法：在.babelrc 文件中添加 "plugins": ["@babel/plugin-syntax-dynamic-import"] ；在用到的地方 import("./text.js").then（res=>{}）; 
+注意：登陆的时候一定要确定npm源为：https://registry.npmjs.org/
+
+- 非第一次发布包：
+
+在终端输入npm login，然后输入你创建的账号和密码，和邮箱，登陆
+【注意】npm adduser成功的时候默认你已经登陆了，所以不需要再接着npm login.
+
+- 【注意点3】你的项目里有部分私密的代码不想发布到npm上？
+  将它写入.gitignore 或.npmignore中，上传就会被忽略了
+  
+- npm unpublish 只能取消发布 72小时内的包
+
+-  测试 npm pack 在本地生成 large-number-add-1.0.0.tgz 文件
+
+在其他项目引入 npm i 路径/large-number-add-1.0.0.tgz -D
