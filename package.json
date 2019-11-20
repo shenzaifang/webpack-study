@@ -9,12 +9,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/calamus0427/calamus-vue-music.git"
+    "url": "git+git@github.com:shenzaifang/webpack-study.git"
   },
   "bugs": {
-    "url": "https://github.com/calamus0427/calamus-vue-music/issues"
+    "url": "https://github.com/shenzaifang/webpack-study/issues"
   },
-  "homepage": "https://github.com/calamus0427/calamus-vue-music#readme",
+  "homepage": "https://github.com/shenzaifang/webpack-study/blob/bulidComponent/README.md",
   "keywords": [],
   "author": "shenzaifang",
   "license": "ISC",
