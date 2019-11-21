@@ -13,3 +13,9 @@
 ### 动态加载模版
 - 插件：@babel/plugin-syntax-dynamic-import
 — 用法：在.babelrc 文件中添加 "plugins": ["@babel/plugin-syntax-dynamic-import"] ；在用到的地方 import("./text.js").then（res=>{}）; 
+
+### 服务端渲染（SSR）
+- 安装 express 包
+- 书写组件时 不能用import XXX from 'xxx'； 需用 require（）； 因为node启用的后台服务器 遵循 commonjs 导出用 module.exports = <xxx/>
+- webpack配置文件 output 需设置 libraryTarget: "umd" node后台服务器使用
+- 因为服务器渲染 页面由string转变成html的 因此页面中的点击等事件会失效
