@@ -1,11 +1,12 @@
 {
-  "name": "large-number-add",
+  "name": "large-number-add-fun",
   "version": "1.0.0",
   "description": "large number add fun",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "prepublish": "webpack"
   },
   "repository": {
     "type": "git",

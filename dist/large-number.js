@@ -135,8 +135,10 @@ function add(a, b) {
         }
         ret = sum + ret;
     }
-
-    return carry + ret;
+    if(carry){
+        ret = carry + ret;
+    }
+    return ret;
 }
 
 

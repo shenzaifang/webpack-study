@@ -19,3 +19,5 @@
 -  测试 npm pack 在本地生成 large-number-add-1.0.0.tgz 文件
 
 在其他项目引入 npm i 路径/large-number-add-1.0.0.tgz -D
+
+- package.json文件中， scripts.prepublish勾子会在npm publish 命令后先执行，然后在publish
