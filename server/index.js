@@ -2,6 +2,8 @@
  *
  * Created by shenzaifang on 2019-11-21
  */
+const fs = require('fs');
+const path = require('path');
 if(typeof window === 'undefined'){
     global.window = {};
 }
@@ -9,6 +11,9 @@ const express = require('express');
 const {renderToString} = require('react-dom/server');
 
 const SSR = require("../dist/search-server");
+const template = fs.readFileSync(path.join(__dirname, '../dist/search.html'),'utf-8');
+const data = require('./data.json');
+
 
 const server = (port) => {
     const app = express();
@@ -30,16 +35,7 @@ const server = (port) => {
 server(process.env.PORT || 3000);
 
 const renderMarkUp = (str) => {
-    return `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<div id="root"></div>
-${str}
-</body>
-</html>
-`;
+    let dataStr = JSON.stringify(data);
+    return template.replace('<!--html-placeholder-->', str)
+        .replace('<!--INITIAL-DATA-placeholder-->',`<script>window.__initial = ${dataStr}</script>`);
 };
