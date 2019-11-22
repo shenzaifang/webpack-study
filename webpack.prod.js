@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const setMPA = ()=>{
     let entry = {};
@@ -117,7 +118,8 @@ module.exports = {
             assetNameRegExp:/\.css$/g,
             cssProcessor: require('cssnano')
         }),
-        new CleanWebpackPlugin()
+        new CleanWebpackPlugin(),
+        new FriendlyErrorsWebpackPlugin()
     ].concat(htmlWebpackPlugins),
     optimization: {
         splitChunks: {
@@ -130,5 +132,6 @@ module.exports = {
                 }
             }
         }
-    }
+    },
+    stats: "errors-only"
 }
